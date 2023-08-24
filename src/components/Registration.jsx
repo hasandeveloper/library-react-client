@@ -64,7 +64,9 @@ const Registration = () => {
 
         <form onSubmit={submitHandler}> 
             <div>
-                <h1>{error.message}</h1>
+                <h1>
+                    <span>{error.message}</span>
+                </h1>
             </div>
 
             <div>
@@ -75,7 +77,11 @@ const Registration = () => {
                 <input value={formData.password} placeholder="Password" type="password" onChange={onChangeHandler} name="password" />
             </div>
 
-            <button type="submit">Register</button>
+            <div>
+                <button type="submit">Register</button>
+                <a href="/login">Login?</a>
+            </div>
+
         </form>
     </div>
   )
