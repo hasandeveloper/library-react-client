@@ -79,7 +79,7 @@ const Registration = () => {
 
             <div>
                 <button type="submit">Register</button>
-                <a href="/login">Login?</a>
+                <a href="/">Login?</a>
             </div>
 
         </form>

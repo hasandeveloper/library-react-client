@@ -7,13 +7,13 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-         <Route path="/" element={<Registration/>}/>
+         <Route path="/" element={<Login/>}/>
          <Route path="/home" element={<Home/>}/>
-         <Route path="/login" element={<Login/>}/>
+         <Route path="/registration" element={<Registration/>}/>
          <Route path="*" element={<h1>Not found</h1>}/>
       </Routes>
     </BrowserRouter>
   )
 }
 
-export default App
+export default App;
