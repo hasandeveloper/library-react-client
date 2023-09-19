@@ -1,10 +1,17 @@
 import React from 'react'
-import axios from 'axios'
+import AddLibrary from './AddLibrary'
+import ListLibrary from './ListLibrary'
+import { LibraryContextProvider } from '../context/LibraryContext'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <LibraryContextProvider>
+        <AddLibrary/>
+        <ListLibrary/>
+      </LibraryContextProvider>
+    </>
   )
 }
 
-export default Home
+export default Home;
