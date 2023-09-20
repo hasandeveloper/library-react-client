@@ -3,11 +3,14 @@ import React, { useReducer, createContext } from 'react'
 export const LibraryContext = createContext();
 
 //initial state
-const INITIAL_STATE = [10,20]
+const INITIAL_STATE = []   // add getLibrary function which call via axios for libraries get request and return to this INITIAL_STATE variable
 
 //reducer
 const libraryReducer = (state, action) => {
     if(action.type === "ADD_LIBRARY"){
+
+        // Add ajax code for library create request
+
         return [...state, action.payload]
     }
 };
