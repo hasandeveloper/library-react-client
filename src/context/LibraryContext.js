@@ -12,34 +12,19 @@ const token = localStorage.getItem("token");
 
 //reducer
 const libraryReducer = (state, action) => {
-    if(action.type === "ADD_LIBRARY"){
+    // if(action.type === "ADD_LIBRARY"){
+        switch(action.type) {
+            case "ADD_LIBRARY":
+              return [...state, action.payload]
+            case "EDIT_LIBRARY":
+              // code block
+              break;
+            default:
+              return state
+          }
 
-        // Add ajax code for library create request
-            const createLibrary = async (state) => {
-                try{
-                   const response = await
-                   axios.post(LIBRARY_URL, {
-                        api_v1_library:{
-                            name: action.payload
-                        }
-                   },{
-                    headers: {
-                        'Authorization': `${token}`
-                    }
-                  })
-                  if(response.status === 201){
-                    debugger
-                    // return [...state, response.data]
-                  }
-                  
-                }catch(error){
-                    // debugger
-                }
-            }
-            createLibrary(state);
-            // debugger
-        // return [...state, action.payload]
-    }
+        
+    // }
 };
 
 
@@ -48,11 +33,32 @@ export const LibraryContextProvider = ({children}) => {
 
     //Add todo action
 
-    const addLibraryAction = (name) => {
-        dispatch({
-            type: "ADD_LIBRARY",
-            payload: name
-        })
+    const addLibraryAction = async (name) => {
+
+                    // Add ajax code for library create request
+                    let response
+                    try{
+                       response = await
+                       axios.post(LIBRARY_URL, {
+                            api_v1_library:{
+                                name: name
+                            }
+                       },{
+                        headers: {
+                            'Authorization': `${token}`
+                        }
+                      })
+                      
+                      if(response.status === 201){
+                            dispatch({
+                                type: "ADD_LIBRARY",
+                                payload: response.data
+                            })
+                      }
+
+                    }catch(error){
+                        alert(error)
+                    }
     }
     return(
         <>

@@ -2,11 +2,9 @@ import React, { useState, useContext } from 'react';
 import { LibraryContext } from '../context/LibraryContext';
 
 const AddLibrary = () => {
-   const {state, addLibraryAction} = useContext(LibraryContext)
-   console.log(state)
+   const {addLibraryAction} = useContext(LibraryContext)
    const [name, setName] = useState("");
 
-   
    const handleNameChange = (e) => {
         setName(e.target.value)
    };
