@@ -16,23 +16,20 @@ const libraryReducer = (state, action) => {
         switch(action.type) {
             case "ADD_LIBRARY":
               return [...state, action.payload]
-            case "EDIT_LIBRARY":
-              // code block
+            case "DELETE_LIBRARY":
+                debugger
+                return [...state, state.filter((library) => library.id !== action.payload)]
               break;
             default:
               return state
           }
-
-        
     // }
 };
-
 
 export const LibraryContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(libraryReducer, INITIAL_STATE)
 
     //Add todo action
-
     const addLibraryAction = async (name) => {
 
                     // Add ajax code for library create request
@@ -45,7 +42,7 @@ export const LibraryContextProvider = ({children}) => {
                             }
                        },{
                         headers: {
-                            'Authorization': `${token}`
+                            'Authorization': token
                         }
                       })
                       
@@ -60,9 +57,31 @@ export const LibraryContextProvider = ({children}) => {
                         alert(error)
                     }
     }
+
+    //Delete todo action
+    const deleteLibraryAction = async (id) => {
+        let response
+        try{
+            response = await
+            axios.delete(`${LIBRARY_URL}/${id}`, {
+                headers: {
+                    'Authorization': token
+                }
+            })
+            if(response.status === 204){
+                dispatch({
+                    type: "DELETE_LIBRARY",
+                    payload: id
+                })
+            }
+        }catch(error){
+            alert(error)
+        }
+    }
+
     return(
         <>
-            <LibraryContext.Provider value={{state, addLibraryAction}}>{children}</LibraryContext.Provider>
+            <LibraryContext.Provider value={{state, addLibraryAction, deleteLibraryAction}}>{children}</LibraryContext.Provider>
         </>
     )
 }
