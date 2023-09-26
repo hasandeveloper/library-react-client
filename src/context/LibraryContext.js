@@ -17,8 +17,7 @@ const libraryReducer = (state, action) => {
             case "ADD_LIBRARY":
               return [...state, action.payload]
             case "DELETE_LIBRARY":
-                debugger
-                return [...state, state.filter((library) => library.id !== action.payload)]
+                return state.filter((library) => library.id !== action.payload)
               break;
             default:
               return state
